@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Cover Letter Generator",
-  description: "Generate personalized cover letters with AI",
+  title: "AI Job Assistant",
+  description: "Generate cover letters and tailor resumes with AI",
 };
 
 export default function RootLayout({

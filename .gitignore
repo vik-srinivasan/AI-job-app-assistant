@@ -19,6 +19,9 @@ backend/static/
 .vscode/
 .idea/
 
+# Saved resumes
+saved_resumes/
+
 # OS
 .DS_Store
 Thumbs.db

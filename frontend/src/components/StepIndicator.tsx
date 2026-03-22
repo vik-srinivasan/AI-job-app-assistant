@@ -1,9 +1,8 @@
 import { Step } from "@/types";
 
 const steps = [
-  { num: 1 as const, label: "Job Info" },
-  { num: 2 as const, label: "Resume" },
-  { num: 3 as const, label: "Result" },
+  { num: 1 as const, label: "Resume" },
+  { num: 2 as const, label: "Result" },
 ];
 
 export default function StepIndicator({ currentStep }: { currentStep: Step }) {

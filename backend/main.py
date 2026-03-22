@@ -1,13 +1,16 @@
+import logging
 from pathlib import Path
 
 from fastapi import FastAPI, Request
+
+logging.basicConfig(level=logging.INFO)
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from routers import generate, scrape
+from routers import generate, resume_chat, scrape
 
-app = FastAPI(title="Cover Letter Generator API")
+app = FastAPI(title="AI Job Assistant API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -19,6 +22,7 @@ app.add_middleware(
 
 app.include_router(generate.router, prefix="/api")
 app.include_router(scrape.router, prefix="/api")
+app.include_router(resume_chat.router, prefix="/api")
 
 
 @app.get("/health")
@@ -42,4 +46,8 @@ if static_dir.is_dir():
         file = static_dir / path
         if file.is_file():
             return FileResponse(file)
+        # Support directory-style routes (e.g., /resume -> /resume/index.html)
+        index = static_dir / path / "index.html"
+        if index.is_file():
+            return FileResponse(index)
         return FileResponse(static_dir / "index.html")

@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 
 interface Props {
   onSubmit: (resume: File, additionalDocs: File[]) => void;
-  onBack: () => void;
+  onBack?: () => void;
 }
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
@@ -153,12 +153,14 @@ export default function ResumeUpload({ onSubmit, onBack }: Props) {
       )}
 
       <div className="mt-7 flex gap-3">
-        <button
-          onClick={onBack}
-          className="px-5 py-2.5 border border-slate-200 text-slate-600 font-medium rounded-xl hover:bg-slate-50 transition-colors"
-        >
-          Back
-        </button>
+        {onBack && (
+          <button
+            onClick={onBack}
+            className="px-5 py-2.5 border border-slate-200 text-slate-600 font-medium rounded-xl hover:bg-slate-50 transition-colors"
+          >
+            Back
+          </button>
+        )}
         <button
           onClick={() => resume && onSubmit(resume, additionalDocs)}
           disabled={!resume}
